@@ -10,6 +10,6 @@ composer require wedesignit/dropshiphub-php-api-client
 
 ```php
 $client = new \WeDesignIt\Dropshiphub\Client($apiToken);
-$dropshiphub = new \WeDesignIt\Dropshiphub\Client($client);
+$dropshiphub = new \WeDesignIt\Dropshiphub\Dropshiphub($client);
 ```
 
