@@ -1,0 +1,34 @@
+{
+  "name": "wedesignit/dropshiphub-php-api-client",
+  "description": "PHP Client for the Dropshiphub API",
+  "type": "library",
+  "keywords": [
+    "Dropshiphub",
+    "Dropshiphub API client",
+    "dropshipping",
+    "WeDesignIt"
+  ],
+  "require": {
+    "guzzlehttp/guzzle": "^7",
+    "php": "^8.0",
+    "ext-json": "*"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Patrick van Kouteren",
+      "email": "p.vankouteren@wedesignit.nl",
+      "homepage": "https://www.wedesignit.nl"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "WeDesignIt\\Dropshiphub\\": "src/"
+    }
+  },
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "optimize-autoloader": true
+  }
+}
