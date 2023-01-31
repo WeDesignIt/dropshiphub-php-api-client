@@ -12,7 +12,7 @@ class Order extends Endpoint
 
     public function list(string $status = self::STATUS_OPEN): array|string
     {
-        return $this->client->request('get', 'suppliers/orders', ['query' => ['status' => $status]]);
+        return $this->client->request('get', 'suppliers/orders', ['query' => $this->getQuery() + ['status' => $status]]);
     }
 
     public function get(string $orderIdentifier): array|string
