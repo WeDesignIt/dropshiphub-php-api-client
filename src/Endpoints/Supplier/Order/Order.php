@@ -12,7 +12,7 @@ class Order extends Endpoint
 
     public function list(string $status = self::STATUS_OPEN): array|string
     {
-        return $this->client->request('get', 'suppliers/orders');
+        return $this->client->request('get', 'suppliers/orders', ['query' => ['status' => $status]]);
     }
 
     public function get(string $orderIdentifier): array|string
@@ -23,7 +23,9 @@ class Order extends Endpoint
     public function confirm(string $dshOrderIdentifier, string $yourOrderNumber): array|string
     {
         return $this->client->request('post', 'suppliers/orders/' . $dshOrderIdentifier . '/confirm', [
-            'order' => $yourOrderNumber,
+            'json' => [
+                'order' => $yourOrderNumber,
+            ],
         ]);
     }
 
