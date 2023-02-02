@@ -19,12 +19,12 @@ class Product extends Endpoint
 
     public function create(array $product): array|string
     {
-        return $this->client->request('post', 'suppliers/products', $product);
+        return $this->client->request('post', 'suppliers/products', ['json' => $product]);
     }
 
     public function update(string $productIdentifier, array $product): array|string
     {
-        return $this->client->request('put', 'suppliers/products/' . $productIdentifier, $product);
+        return $this->client->request('put', 'suppliers/products/' . $productIdentifier, ['json' => $product]);
     }
 
     public function delete(string $productIdentifier): array|string

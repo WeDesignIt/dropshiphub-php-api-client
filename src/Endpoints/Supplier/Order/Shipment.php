@@ -14,6 +14,6 @@ class Shipment extends Endpoint
 
     public function create(string $orderIdentifier, array $data): array|string
     {
-        return $this->client->request('post', 'suppliers/orders/' . $orderIdentifier . '/shipments', $data);
+        return $this->client->request('post', 'suppliers/orders/' . $orderIdentifier . '/shipments', ['json' => $data]);
     }
 }
