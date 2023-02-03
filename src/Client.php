@@ -4,7 +4,12 @@ namespace WeDesignIt\Dropshiphub;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\MessageFormatter;
+use GuzzleHttp\Middleware;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 
 class Client
 {
@@ -33,12 +38,12 @@ class Client
      *
      * @param string $token
      */
-    public function __construct(string $token, string $companyId)
+    public function __construct(string $token, string $companyId, ?LoggerInterface $logger = null)
     {
         $this->token = $token;
         $this->companyId = $companyId;
 
-        $this->client = new GuzzleClient([
+        $parameters = [
             'base_uri' => $this->baseUrl,
             'headers' => [
                 'Authorization' => 'Bearer ' . $this->token,
@@ -46,7 +51,20 @@ class Client
                 'X-Company-Id' => $this->companyId,
                 'User-Agent' => 'dropshiphub-php-api-client/1.0 (github.com/wedesignit/dropshiphub-php-api-client)',
             ],
-        ]);
+        ];
+        if (!empty($logger)){
+            $stack = HandlerStack::create();
+
+            $stack->push(Middleware::log(
+                $logger,
+                new MessageFormatter(MessageFormatter::DEBUG)),
+                LogLevel::DEBUG
+            );
+
+            $parameters['handler'] = $stack;
+        }
+
+        $this->client = new GuzzleClient($parameters);
     }
 
     /**
@@ -65,6 +83,7 @@ class Client
     {
         $response = $this->rawRequest($method, $uri, $options);
 
+        $response->getBody()->seek(0);
         $contents = $response->getBody()->getContents();
 
         // fallback to application/json as this is, the default return type
