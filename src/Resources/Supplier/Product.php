@@ -177,7 +177,7 @@ class Product extends Resource
 
     public function condition(Condition $condition): self
     {
-        $this->offsetSet('condition', $condition);
+        $this->offsetSet('condition', $condition->toArray());
 
         return $this;
     }
