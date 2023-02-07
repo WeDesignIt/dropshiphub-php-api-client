@@ -16,8 +16,7 @@ class Client
     /**
      * @var string
      */
-    //protected string $baseUrl = 'https://dropshiphub.nl/api/v1/';
-    protected string $baseUrl = 'https://backofficedropshiphub.live.wedesignit.nl/api/v1/';
+    protected string $baseUrl = 'https://dropshiphub.nl/api/v1/';
 
     /**
      * @var GuzzleClient
