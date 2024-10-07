@@ -35,7 +35,9 @@ class Client
     /**
      * Client constructor.
      *
-     * @param string $token
+     * @param string $token Your Dropshiphub API token
+     * @param string $companyId Your Dropshiphub Company ID
+     * @param LoggerInterface|null $logger Optional PSR-3 logger if you want to do some debugging
      */
     public function __construct(string $token, string $companyId, ?LoggerInterface $logger = null)
     {
