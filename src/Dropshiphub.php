@@ -12,7 +12,7 @@ class Dropshiphub
     private Client $client;
 
     /**
-     * Sendy constructor.
+     * Dropshiphub client constructor.
      *
      * @param Client $client
      */
@@ -21,26 +21,53 @@ class Dropshiphub
         $this->client = $client;
     }
 
+    /**
+     * Ping the Dropshiphub API to check the connection
+     *
+     * @return array|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function ping(): array|string
     {
         return $this->client->request('get', 'ping');
     }
 
+    /**
+     * Ping the Dropshiphub API with your token to check the connection
+     *
+     * @return array|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function status(): array|string
     {
         return $this->client->request('get', 'status');
     }
 
+    /**
+     * Base accessor for the Company endpoint
+     *
+     * @return Company
+     */
     public function company(): Company
     {
         return new Company($this->client);
     }
 
+    /**
+     * Base accessor for the Catalog endpoint
+     *
+     * @return Catalog
+     */
     public function catalog(): Catalog
     {
         return new Catalog($this->client);
     }
 
+    /**
+     * Base accessor for the Supplier endpoint
+     *
+     * @return Supplier
+     */
     public function supplier(): Supplier
     {
         return new Supplier($this->client);
