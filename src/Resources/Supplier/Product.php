@@ -16,35 +16,35 @@ class Product extends Resource
     const MEASURE_GRAM = 'g';
     const MEASURE_KILOGRAM = 'kg';
 
-    public function ean($ean): self
+    public function ean(string $ean): self
     {
         $this->offsetSet('ean', $ean);
 
         return $this;
     }
 
-    public function sku($sku): self
+    public function sku(string $sku): self
     {
         $this->offsetSet('sku', $sku);
 
         return $this;
     }
 
-    public function isbn($isbn): self
+    public function isbn(string $isbn): self
     {
         $this->offsetSet('isbn', $isbn);
 
         return $this;
     }
 
-    public function articleNumber($articleNumber): self
+    public function articleNumber(string $articleNumber): self
     {
         $this->offsetSet('article_number', $articleNumber);
 
         return $this;
     }
 
-    public function title($title): self
+    public function title(string $title): self
     {
         $this->offsetSet('title', $title);
 
@@ -57,14 +57,14 @@ class Product extends Resource
      * @param string $name
      * @return $this
      */
-    public function name($name): self
+    public function name(string $name): self
     {
         $this->offsetSet('title', $name);
 
         return $this;
     }
 
-    public function brand($brand): self
+    public function brand(string $brand): self
     {
         $this->offsetSet('brand', $brand);
 
@@ -178,6 +178,13 @@ class Product extends Resource
     public function condition(Condition $condition): self
     {
         $this->offsetSet('condition', $condition->toArray());
+
+        return $this;
+    }
+
+    public function economicOperator(EconomicOperator $economicOperator): self
+    {
+        $this->offsetSet('economic_operator', $economicOperator->toArray());
 
         return $this;
     }
